@@ -27,21 +27,21 @@ let playbtn = `
 `;
 async function getsongs(folder) {
     currentfolder = folder
-    
+
     // Fetch the songs list from JSON
     let response = await fetch('./assets/songs.json')
     let songsData = await response.json()
-    
+
     // Get the folder name (e.g., "summer" from "songs/summer")
     let folderName = folder; // now includes `songs/Chill`
 
     // currentfolder = folderName;
 
     songs = songsData[folderName] || []
-    
+
     let songul = document.querySelector(".songlist").getElementsByTagName("ul")[0]
     songul.innerHTML = ""
-    
+
     for (const song of songs) {
         songul.innerHTML = songul.innerHTML + `<li>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
@@ -72,7 +72,7 @@ async function getsongs(folder) {
             playmusic(e.querySelector(".info").innerHTML.trim())
         })
     })
-    
+
     return songs
 }
 function playmusic(track) {
@@ -85,7 +85,8 @@ function playmusic(track) {
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
 }
 async function main() {
-    await getsongs("songs/summer");
+    await getsongs("summer");
+
     console.log(songs);
 
     let isPlaying = false;
@@ -143,7 +144,7 @@ async function main() {
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
             console.log(item, item.currentTarget.dataset);
-            songs = await getsongs(`songs/${item.currentTarget.dataset.folder}`);
+            songs = await getsongs(item.currentTarget.dataset.folder);
             if (songs.length > 0) {
                 playmusic(songs[0]); // Automatically play first song of the new folder
             }
