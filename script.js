@@ -77,7 +77,7 @@ async function getsongs(folder) {
 }
 function playmusic(track) {
     //let audio = new Audio("/assets/songs/" + track)
-    currentsong.src = `/assets/${currentfolder}/` + track
+    currentsong.src = `assets/${currentfolder}/` + track
     currentsong.play()
     playcont.innerHTML = pausedbtn;
     let displayName = track.replaceAll("%20", " ").replaceAll("%2D", "-").replace(".mp3", "")
