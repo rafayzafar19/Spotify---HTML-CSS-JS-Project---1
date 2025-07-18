@@ -1,3 +1,5 @@
+const basePath = location.hostname.includes("github.io") ? "/Spotify---HTML-CSS-JS-Project---1" : "";
+
 function formatTime(seconds) {
     const totalSeconds = Math.floor(seconds); // or Math.round(seconds)
     const mins = Math.floor(totalSeconds / 60);
@@ -29,7 +31,7 @@ async function getsongs(folder) {
     currentfolder = folder
 
     // Fetch the songs list from JSON
-    let response = await fetch('./assets/songs.json')
+    let response = await fetch(`${basePath}/assets/songs.json`)
     let songsData = await response.json()
 
     // Get the folder name (e.g., "summer" from "songs/summer")
@@ -77,7 +79,7 @@ async function getsongs(folder) {
 }
 function playmusic(track) {
     //let audio = new Audio("/assets/songs/" + track)
-    currentsong.src = `/assets/songs/${currentfolder}/` + track
+    currentsong.src = `${basePath}/assets/songs/${currentfolder}/` + track;
     currentsong.play()
     playcont.innerHTML = pausedbtn;
     let displayName = track.replaceAll("%20", " ").replaceAll("%2D", "-").replace(".mp3", "")
