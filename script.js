@@ -34,7 +34,7 @@ async function getsongs(folder) {
     
     // Get the folder name (e.g., "summer" from "songs/summer")
     let folderName = folder.split('/')[1]
-    currentfolder = folderName;
+    // currentfolder = folderName;
 
     songs = songsData[folderName] || []
     
